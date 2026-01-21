@@ -21,3 +21,4 @@ Route::get('/roles', [RoleController::class, 'index'])->middleware('auth');
 Route::get('/admin-only', [RoleController::class, 'onlyForAdmin'])->middleware(['can:admin']);
 Route::get('/editor-only', [RoleController::class, 'onlyForEditor'])->middleware(['can:editor']);
 Route::get('/author-only', [RoleController::class, 'onlyForAuthor'])->middleware(['can:author']);
+Route::get('/secret', [RoleController::class, 'secretMessage'])->middleware('can:secret');

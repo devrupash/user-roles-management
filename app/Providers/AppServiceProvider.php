@@ -48,7 +48,11 @@ class AppServiceProvider extends ServiceProvider
 
             return $user->hasAnyRole(['admin', 'editor', 'author']);
         });
-    
+
+        Gate::define('secret', function($user){
+            return request()->input('password') === 'secret';
+        });
+
         $this->configureDefaults();
     }
 

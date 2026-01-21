@@ -44,6 +44,27 @@ class RoleController extends Controller
     }
 
     function onlyForAuthor(Request $request){
+        // $user = $request->user();
+        // if ($user->roles->contains('name', 'author')) {
+        //     return response()->json([
+        //         'message' => 'Welcome, Author!',
+        //         'user' => $user,
+        //     ]);
+        // }
+        // abort(403, 'Unauthorized action.');
+
         return response("This is author only area.");
     }
+
+    public function secretMessage(Request $request){
+
+        $secret = $request->input('password');
+        if($secret !== 'secret'){
+            abort(403, 'Unauthorized action.');
+        }
+        return response("This is a very secret message");
+        
+    }
+
+
 }
