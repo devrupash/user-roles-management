@@ -73,6 +73,8 @@ class RoleController extends Controller
 
     function updateRole(Request $request){
         $role = Role::find(2);
-
+        $role->description = "Updated Editor Role Description";
+        $role->save();
+        return response()->json($role);
     }
 }
