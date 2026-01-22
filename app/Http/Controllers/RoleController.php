@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
@@ -73,7 +74,21 @@ class RoleController extends Controller
 
     function updateRole(Request $request){
         $role = Role::find(2);
+        Gate::authorize('update', $role);
         $role->description = "Updated Editor Role Description";
+        $role->save();
+        return response()->json($role);
+    }
+
+    function updateRoleAgain(Request $request){
+        $role = Role::find(2);
+        $role->description = "Updated Editor Role Description Again";
+        $role->save();
+        return response()->json($role);
+    }
+
+    function updateSingleRole(Request $request, Role $role){
+        $role->description = "Updated Author Role Description";
         $role->save();
         return response()->json($role);
     }
