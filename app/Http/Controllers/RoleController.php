@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Role;
 
 class RoleController extends Controller
 {
@@ -66,5 +67,12 @@ class RoleController extends Controller
         
     }
 
+    function blogDashboard(Request $request){
+        return view('blog-dashboard');
+    }
 
+    function updateRole(Request $request){
+        $role = Role::find(2);
+
+    }
 }
